@@ -1,4 +1,49 @@
-#heading {
-  font-size: 2em;
-  color: #d62222;
+.header {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+}
+
+.navbar > ul {
+  display: flex;
+
+  list-style: none;
+}
+
+.navbar > ul > li {
+  margin: 0 10px;
+}
+
+
+
+.search-bar {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+}
+
+.res-logo {
+  padding: 5px;
+  margin: 5px;
+}
+
+.res-container {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  width: 100px;
+}
+
+.res-card > img {
+  width: 100px;
+  height: 100px;
+}
+
+.res-card {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 5px;
+  width: 400px;
 }
