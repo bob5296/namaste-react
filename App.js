@@ -9,7 +9,7 @@
 
         console.log(heading);
 
-        //JSX
+        //JSX is a specification not part of react or any library
         const H = () => <h1 id="heading">Namaste React</h1>; // react component
         //react element
         
