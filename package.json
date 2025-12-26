@@ -1,0 +1,29 @@
+{
+  "name": "namaste-react",
+  "version": "1.0.0",
+  "description": "learn react",
+  "keywords": [
+  ],
+  "homepage": "https://github.com/bob5296/namaste-react#readme",
+  "bugs": {
+    "url": "https://github.com/bob5296/namaste-react/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bob5296/namaste-react.git"
+  },
+  "license": "ISC",
+  "author": "Prabhakar",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  }
+}
