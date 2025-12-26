@@ -5,16 +5,35 @@
             {id: "heading"},
             "Hello World from React!"
         );
-        const parent = React.createElement("div", {id: "parent"}, [
-            React.createElement("div", {id: "child"}, [
-                React.createElement("h1", {}, "I'm an h1 tag"),
-                React.createElement("h2", {}, "I'm an h2 tag")
-            ]),
-            React.createElement("div", {id: "child2"}, [
-                React.createElement("h1", {}, "I'm an h1 tag"),
-                React.createElement("h2", {}, "I'm an h2 tag")
-                ])
-        ]);
-        console.log(parent);
+        
+
+        console.log(heading);
+
+        //JSX
+        const H = () => <h1 id="heading">Namaste React</h1>; // react component
+        //react element
+        
+        const Fn = () => {
+            
+            return (
+            <div>
+                {h} //react element inside react component
+                {console.log(h)}
+                <H/>
+            <h1 id="heading">Namaste React from react component</h1>
+            </div>
+            );
+            ///react functional component jsx -> babel -> react element -> virtual dom -
+            // -> fibre -> reconcilation/diffing -> real dom -> browser
+        };
+
+        const h = (
+            <div>
+            <Fn/> // component inside element
+        <h1 id="heading">Namaste React</h1>
+        </div>
+        );
+        console.log(Fn);
+        console.log(H);
         const root = ReactDOM.createRoot(document.getElementById("root"));
-        root.render(parent);
+        root.render(h);
