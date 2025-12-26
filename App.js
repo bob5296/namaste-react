@@ -20,6 +20,7 @@
                 {h} //react element inside react component
                 {console.log(h)}
                 <H/>
+                {H()} // can be called as function insidde JSX as component is a function
             <h1 id="heading">Namaste React from react component</h1>
             </div>
             );
@@ -29,11 +30,10 @@
 
         const h = (
             <div>
-            <Fn/> // component inside element
         <h1 id="heading">Namaste React</h1>
         </div>
         );
         console.log(Fn);
         console.log(H);
         const root = ReactDOM.createRoot(document.getElementById("root"));
-        root.render(h);
+        root.render(<Fn/>);
