@@ -2,8 +2,7 @@
   "name": "namaste-react",
   "version": "1.0.0",
   "description": "learn react",
-  "keywords": [
-  ],
+  "keywords": [],
   "homepage": "https://github.com/bob5296/namaste-react#readme",
   "bugs": {
     "url": "https://github.com/bob5296/namaste-react/issues"
@@ -20,10 +19,9 @@
     "start": "parcel index.html",
     "build": "parcel build index.html"
   },
-  "devDependencies": {
-  },
   "dependencies": {
     "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react-dom": "^19.2.3",
+    "react-router-dom": "^7.11.0"
   }
 }
