@@ -1,23 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const [login, setLogin] = React.useState("Login");
-    console.log("Header rendered");
+
     return (
         <div className="header">
             <div className="logo">
                 <span className="logo-icon">🍕</span>
-                <h1>FoodExpress</h1>
+                <Link to="/">FoodExpress</Link>
             </div>
             <nav className="menu-bar">
-                <button className="menu-item">
+                <Link to="/profile" className="menu-item">
                     <span className="menu-icon">👤</span>
                     <span>Profile</span>
-                </button>
-                <button className="menu-item">
+                </Link>
+                <Link to="/cart" className="menu-item">
                     <span className="menu-icon">🛒</span>
                     <span>Cart</span>
-                </button>
+                </Link>
                 <button className="menu-item login-button" onClick={() => {
                     setLogin(login === "Login" ? "Logout" : "Login");
                 }}>

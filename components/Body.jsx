@@ -1,6 +1,6 @@
 import React from "react";
 import RestaurantCard from "./RestaurantCard";
-import restaurantData from "../data/restaurantData";
+import { Link } from "react-router-dom";
 
 const Body = () => {
     const [restaurants, setRestaurants] = React.useState([]);
@@ -8,11 +8,8 @@ const Body = () => {
     const [filteredRestaurants, setFilteredRestaurants] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState(null);
-    console.log("Body rendered");
 
-    // Fetch restaurants from API on component mount
     React.useEffect(() => {
-        console.log("useEffect called");
         getRestaurants();
     }, []);
 
@@ -56,9 +53,13 @@ const Body = () => {
             ) : null}
             <div className="restaurant-container">
                 {filteredRestaurants.length > 0 ? filteredRestaurants.map((restaurant, index) => (
-                    <RestaurantCard key={index} restaurant={restaurant} />
+                    <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
+                        <RestaurantCard  restaurant={restaurant} />
+                    </Link>
                 )) : restaurants.map((restaurant, index) => (
-                    <RestaurantCard key={index} restaurant={restaurant} />
+                    <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
+                        <RestaurantCard  restaurant={restaurant} />
+                    </Link>
                 ))}
             </div>
         </main>
