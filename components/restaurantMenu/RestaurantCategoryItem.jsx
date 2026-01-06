@@ -1,6 +1,6 @@
 import React from "react";
 
-const RestaurantMenuCard = (props) => {
+const RestaurantCategoryItem = (props) => {
     const { item } = props;
 
     // If item is completely missing, render a lightweight placeholder (or return null)
@@ -38,4 +38,4 @@ const RestaurantMenuCard = (props) => {
     )
 }
 
-export default RestaurantMenuCard;
+export default RestaurantCategoryItem;
