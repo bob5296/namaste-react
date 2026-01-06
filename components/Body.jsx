@@ -1,6 +1,10 @@
 import React from "react";
 import RestaurantCard from "./RestaurantCard";
 import { Link } from "react-router-dom";
+import withPromotedLabel from "../utils/HOC/withPromotedLabel";
+
+// Create promoted restaurant card component at module scope so it isn't recreated on every render
+const PromotedRestaurantCard = withPromotedLabel(RestaurantCard);
 
 const Body = () => {
     const [restaurants, setRestaurants] = React.useState([]);
@@ -52,13 +56,19 @@ const Body = () => {
                 </div>
             ) : null}
             <div className="restaurant-container">
-                {filteredRestaurants.length > 0 ? filteredRestaurants.map((restaurant, index) => (
-                    <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
-                        <RestaurantCard  restaurant={restaurant} />
+                {filteredRestaurants.length > 0 ? filteredRestaurants.map((restaurant) => (
+                    <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`} state={{ restaurantName: restaurant.name }}>
+                        {restaurant.isPromoted ? 
+                            <PromotedRestaurantCard restaurant={restaurant} /> : 
+                            <RestaurantCard restaurant={restaurant} />
+                        }
                     </Link>
-                )) : restaurants.map((restaurant, index) => (
-                    <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
-                        <RestaurantCard  restaurant={restaurant} />
+                )) : restaurants.map((restaurant) => (
+                    <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`} state={{ restaurantName: restaurant.name }}>
+                        {restaurant.isPromoted ? 
+                            <PromotedRestaurantCard restaurant={restaurant} /> : 
+                            <RestaurantCard restaurant={restaurant} />
+                        }
                     </Link>
                 ))}
             </div>

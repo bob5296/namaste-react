@@ -1,12 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import Body from "./components/Body";
-import Profile from "./components/Profile";
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import RestaurantMenu from "./components/RestaurantMenu";
+import RestaurantMenu from "./components/restaurantMenu/RestaurantMenu";
+import AboutClass from "./components/classComponents/AboutClass";
 
-import AboutClass from "./components/AboutClass";
+// Lazy load Profile component
+const Profile = React.lazy(() => import("./components/Profile"));
 
 const App = () => {
     return (
@@ -16,7 +17,11 @@ const App = () => {
                 <Route path="/" element={<AppLayout />}>
                     {/* Child routes - rendered in <Outlet /> */}
                     <Route index element={<Body />} />
-                    <Route path="profile" element={<Profile />} />
+                    <Route path="profile" element={
+                        <Suspense fallback={<div>Loading Profile...</div>}>
+                            <Profile />
+                        </Suspense>
+                    } />
                     <Route path="about" element={<AboutClass />} />
                     <Route path="restaurant/:Id" element={<RestaurantMenu />} />
                 </Route> 

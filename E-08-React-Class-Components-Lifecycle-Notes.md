@@ -265,7 +265,8 @@ class MyComponent extends React.Component {
 ```jsx
 const MyComponent = () => {
     const [data, setData] = useState(null);
-    
+    const [error, setError] = useState(null); // added error state so setError is defined
+
     useEffect(() => {
         let cancelled = false;
         

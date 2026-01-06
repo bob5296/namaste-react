@@ -23,7 +23,6 @@ class AboutClass extends React.Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.timer);
         // console.log("parent will unmount");
     }
 }

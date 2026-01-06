@@ -9,6 +9,8 @@ constructor(props) {
             contact: "Dummy"
         }
     };
+    // mount flag to prevent setState after unmount
+    this._isMounted = false;
     // console.log(this.props.name+"child ctgor");
 }
 
@@ -24,6 +26,8 @@ render() {
 }
 
 async componentDidMount() {
+    // mark mounted before doing async work
+    this._isMounted = true;
     try {
         // use a specific username if provided via props, otherwise default to 'octocat'
         const username = this.props.username || 'octocat';
@@ -41,24 +45,34 @@ async componentDidMount() {
         const location = data.location ?? 'Not available';
         const contact = data.email ?? data.blog ?? data.twitter_username ?? 'Not available';
 
-        this.setState({
-            userinfo: {
-                login,
-                location,
-                contact
-            }
-        });
+        // only set state if still mounted
+        if (this._isMounted) {
+            this.setState({
+                userinfo: {
+                    login,
+                    location,
+                    contact
+                }
+            });
+        }
     } catch (err) {
         console.error("API error:", err);
         // As a last-resort fallback keep existing state values or set them to 'Dummy' if missing
-        this.setState((prev) => ({
-            userinfo: {
-                login: prev.userinfo?.login ?? 'Dummy',
-                location: prev.userinfo?.location ?? 'Dummy',
-                contact: prev.userinfo?.contact ?? 'Dummy'
-            }
-        }));
+        if (this._isMounted) {
+            this.setState((prev) => ({
+                userinfo: {
+                    login: prev.userinfo?.login ?? 'Dummy',
+                    location: prev.userinfo?.location ?? 'Dummy',
+                    contact: prev.userinfo?.contact ?? 'Dummy'
+                }
+            }));
+        }
     }
+}
+
+componentWillUnmount() {
+    // mark unmounted so async callbacks won't call setState
+    this._isMounted = false;
 }
 }
 
