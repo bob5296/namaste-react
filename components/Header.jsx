@@ -1,9 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useAuth } from "react-oidc-context";
+import { clearUser } from "../appSlice";
 
 const Header = () => {
-    const [login, setLogin] = React.useState("Login");
+    const auth = useAuth();
+    const cartItems = useSelector((state) => state.app.cartItems);
+    const user = useSelector((state) => state.app.loggedInUser);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
+    const handleAuthClick = () => {
+        if (auth.isAuthenticated) {
+            dispatch(clearUser());
+            auth.signoutRedirect();
+        } else {
+            navigate("/login");
+        }
+    };
+    
     return (
         <div className="header">
             <div className="logo">
@@ -19,10 +35,9 @@ const Header = () => {
                     <span className="menu-icon">🛒</span>
                     <span>Cart</span>
                 </Link>
-                <button className="menu-item login-button" onClick={() => {
-                    setLogin(login === "Login" ? "Logout" : "Login");
-                }}>
-                    <span>{login}</span>
+                {user && <label className="user-label">{user}</label>}
+                <button className="menu-item login-button" onClick={handleAuthClick}>
+                    <span>{auth.isAuthenticated ? "Logout" : "Login"}</span>
                 </button>
             </nav>
         </div>

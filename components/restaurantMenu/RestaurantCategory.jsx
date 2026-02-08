@@ -1,17 +1,14 @@
 import React from "react";
 import RestaurantCategoryItem from "./RestaurantCategoryItem";
 
-const RestaurantCategory = (props) => {
-    const { item } = props;
-    const [isExpanded, setIsExpanded] = React.useState(false);
-
+const RestaurantCategory = ({ item, isExpanded, onToggle }) => {
     return (
         <div className="category-accordion">
             <div className="category-header">
                 <h2 className="category-title">{item.name}</h2>
                 <button 
                     className="category-toggle hoverable" 
-                    onClick={() => setIsExpanded(!isExpanded)}
+                    onClick={onToggle}
                     aria-expanded={isExpanded}
                     aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${item.name}`}
                 >

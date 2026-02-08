@@ -16,12 +16,16 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "start": "parcel index.html --public-url /",
+    "build": "parcel build index.html --public-url /"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
+    "oidc-client-ts": "^3.4.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
+    "react-oidc-context": "^3.3.0",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^6.11.0"
   },
   "devDependencies": {
